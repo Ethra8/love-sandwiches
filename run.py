@@ -44,6 +44,7 @@ def validate_data(values):
     or if there aren't exactly 6 values.
     """
     try:
+        [int(value) for value in values] #easy way to convert all strings of nums into integers
         if len(values) != 6:
             raise ValueError( #ValueError is renamed as e in except, and goes in the {e} in final message
                 f"Exactly 6 values required, you provided {len(values)}"
