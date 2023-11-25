@@ -25,6 +25,9 @@ print(data)
 def get_sales_data():
     """
     Get sales figures input from the user
+    Run while loop to request valid data from the user via the terminal,
+    which must be a string of 6 numbers separated by commas.
+    The loop will repeatedly request data, until it is valid.
     """
     while True:
         print("Please enter sales data from the last market.")
@@ -51,7 +54,7 @@ def validate_data(values):
     or if there aren't exactly 6 values.
     """
     try:
-        [int(value) for value in values] #easy way to convert all strings of nums into integers
+        [int(value) for value in values] #easy way to convert all strings values into integers
         if len(values) != 6:
             raise ValueError( #ValueError is renamed as e in except, and goes in the {e} in final message
                 f"Exactly 6 values required, you provided {len(values)}"
@@ -60,6 +63,21 @@ def validate_data(values):
         print(f"Invalid data: {e}, please try again.")
         return False
     
+    print(values)
     return True
 
-data = get_sales_data()
+
+def update_sales_worksheet(data):
+    """
+    Update sales worksheet, add new row with list data provided.
+    """
+    print("Updating sales worksheet... \n") #informs user of process
+    sales_worksheet = SHEET.worksheet('sales') #constant variable defined at begining of code
+    sales_worksheet.append_row(data) # .appen_row adds row to our worksheet with data
+    print("Sales worksheet updated successfully!\n")
+
+
+data = get_sales_data() #still returns list of strings of nums ['1', '22', '33', '4', '5', '66']
+sales_data = [int(num) for num in data] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
+
+update_sales_worksheet(sales_data)
