@@ -1,5 +1,6 @@
 import gspread #library first downloaded through terminal : pip3 install gspread google-auth
 from google.oauth2.service_account import Credentials #imports just specific Credentials function from library, no need to import complete library
+from pprint import pprint
 
 #SCOPE in a constant, in Python, constant variables are written in CAPITALS
 SCOPE = [
@@ -77,7 +78,30 @@ def update_sales_worksheet(data):
     print("Sales worksheet updated successfully!\n")
 
 
-data = get_sales_data() #still returns list of strings of nums ['1', '22', '33', '4', '5', '66']
-sales_data = [int(num) for num in data] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
+def calculate_surplus_data(sales_row):
+    """
+    Compare sales with stock and calculate the surplus for every item type.
 
-update_sales_worksheet(sales_data)
+    The surplus is defined s the sales figures subtracted from the stock:
+    - Positive surplus indicates waste
+    - Negative surplus indicates extra sandwishes made when stock was solf out.
+    """
+    print("Calculating surplus data...\n")
+    stock = SHEET.worksheet("stock").get_all_values()
+    #pprint(stock) #pprint method makes data easier to read in the terminal - installed pprint on top of code from library
+    stock_row = stock.pop() #last row in stock as list of strings
+    #stock_row = stock[-1] --> also takes last row as index -1
+    print(stock_row)
+
+
+def main():
+    """
+    Run all program functions
+    """
+    data = get_sales_data() #still returns list of strings of nums ['1', '22', '33', '4', '5', '66']
+    sales_data = [int(num) for num in data] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
+    update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
+
+print("Welcome to Love Sandwiches data automation")
+main()
