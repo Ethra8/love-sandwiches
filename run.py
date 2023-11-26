@@ -14,8 +14,6 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
-sales_worksheet = SHEET.worksheet('sales') #constant variable defined at begining of code
-surplus_worksheet = SHEET.worksheet('surplus') #constant variable defined at begining of code
 
 """
 Code used to check Google sheets API is working
@@ -113,9 +111,10 @@ def update_worksheet(data, worksheet):
     """
     Refactor to update any worksheet, add new row with data provided.
     """
-    print(f"Updating {worksheet}... \n")
-    worksheet.append_row(data)
-    print("Surplus worksheet updated successfully!\n")
+    print(f"Updating {worksheet}... \n") #informs user of process
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data) # .appen_row adds row to our worksheet with data
+    print(f"{worksheet} updated successfully!\n")
 
 
 def main():
@@ -124,9 +123,9 @@ def main():
     """
     data = get_sales_data() #still returns list of strings of nums ['1', '22', '33', '4', '5', '66']
     sales_data = [int(num) for num in data] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
-    update_worksheet(sales_data, sales_worksheet)
+    update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    update_worksheet(new_surplus_data, surplus_worksheet)
+    update_worksheet(new_surplus_data, "surplus")
 
 print("Welcome to Love Sandwiches data automation")
 main()
