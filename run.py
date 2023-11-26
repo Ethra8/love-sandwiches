@@ -116,6 +116,24 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data) # .appen_row adds row to our worksheet with data
     print(f"{worksheet} updated successfully!\n")
 
+def get_last_5_entries_sales():
+    """
+    Collects columns of data from sales worksheet,
+    collecting the last 5 entries for each sandwich,
+    and returns the data ass a list of strings.
+    """
+    sales = SHEET.worksheet("sales")
+    # column = sales.col_values(3) #retrieve values of 3rd column
+    # print(column)
+    
+    columns = []
+    for ind in range(1,7): #since columns in worksheet don't start at index 0 but index 1, we tell code to start at 1, and add 6 to retrieve all 6 columns
+        column = sales.col_values(ind)
+        columns.append(column[-5:]) #retrieves the range of the last 5 entries of each column, returning a list of lists.
+    # pprint(columns)
+    return columns
+
+
 
 def main():
     """
@@ -126,6 +144,10 @@ def main():
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "surplus")
+    get_last_5_entries_sales()
+
+
 
 print("Welcome to Love Sandwiches data automation")
-main()
+#main()
+sales_columns = get_last_5_entries_sales()
