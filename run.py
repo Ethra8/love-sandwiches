@@ -18,7 +18,7 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 """
 Code used to check Google sheets API is working
 
-sales = SHEET.worksheet('sales') #to access 'sales' worksheet inside 'love-sandwishes' spreadsheet
+sales = SHEET.worksheet('sales') #to access 'sales' worksheet inside 'love-sandwiches' spreadsheet
 data = sales.get_all_values() #gets all values from sales worksheet
 print(data)
 """
