@@ -35,7 +35,7 @@ def get_sales_data():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter your data here:\n") #MUST \n with input, to deploy on Heroku --creates a simple string 1,2,3,4,5,6
+        data_str = input("Enter your data here:") #MUST \n with input, to deploy on Heroku --creates a simple string 1,2,3,4,5,6
         
     
         sales_data = data_str.split(",") #removes commas from string of sales data, and creates a list of strings ['1', '2', '3', '4', '5', '6']
@@ -64,7 +64,6 @@ def validate_data(values):
         print(f"Invalid data: {e}, please try again.")
         return False
     
-    print(values)
     return True
 
 
@@ -83,7 +82,7 @@ def calculate_surplus_data(sales_row):
     #stock_row = stock[-1] --> also takes last row as index -1
     
     stock_row = [int(stock_item) for stock_item in stock_row] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
-    print(stock_row)
+    #print(stock_row)
 
     surplus_data = []
     #zip() loops through various lists:
@@ -101,7 +100,7 @@ def calculate_surplus_data(sales_row):
 
 
 def update_surplus_worksheet(data):
-    print("Updating surplus worksheet... \n") #informs user of process
+    print("Updating surplus worksheet...\n") #informs user of process
     
     surplus_worksheet.append_row(data) # .appen_row adds row to our worksheet with data
     print("Surplus worksheet updated successfully!\n")
