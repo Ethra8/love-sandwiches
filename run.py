@@ -1,6 +1,6 @@
 import gspread #library first downloaded through terminal : pip3 install gspread google-auth
 from google.oauth2.service_account import Credentials #imports just specific Credentials function from library, no need to import complete library
-from pprint import pprint
+# from pprint import pprint --> must not be deployed. but very handy when coding and testing
 
 #SCOPE in a constant, in Python, constant variables are written in CAPITALS
 SCOPE = [
@@ -35,7 +35,7 @@ def get_sales_data():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter your data here: ") #creates a simple string 1,2,3,4,5,6
+        data_str = input("Enter your data here:\n ") #MUST \n with input, to deploy on Heroku --creates a simple string 1,2,3,4,5,6
         
     
         sales_data = data_str.split(",") #removes commas from string of sales data, and creates a list of strings ['1', '2', '3', '4', '5', '6']
