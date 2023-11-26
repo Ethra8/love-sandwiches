@@ -91,8 +91,17 @@ def calculate_surplus_data(sales_row):
     #pprint(stock) #pprint method makes data easier to read in the terminal - installed pprint on top of code from library
     stock_row = stock.pop() #last row in stock as list of strings
     #stock_row = stock[-1] --> also takes last row as index -1
+    
+    stock_row = [int(stock_item) for stock_item in stock_row] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
     print(stock_row)
 
+    surplus_data = []
+    #zip() loops through various lists:
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = stock - sales
+        surplus_data.append(surplus) #includes sustraction of each item type to surplus_data empty string to contain totals of surplus
+    
+    return surplus_data
 
 def main():
     """
@@ -101,7 +110,8 @@ def main():
     data = get_sales_data() #still returns list of strings of nums ['1', '22', '33', '4', '5', '66']
     sales_data = [int(num) for num in data] #converts strings of nums in integers [1, 22, 33, 4, 5, 66]
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
 
 print("Welcome to Love Sandwiches data automation")
 main()
