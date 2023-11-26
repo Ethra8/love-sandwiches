@@ -35,7 +35,7 @@ def get_sales_data():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter your data here:") #MUST \n with input, to deploy on Heroku --creates a simple string 1,2,3,4,5,6
+        data_str = input("Enter your data here:\n") #MUST \n with input, to deploy on Heroku --creates a simple string 1,2,3,4,5,6
         
     
         sales_data = data_str.split(",") #removes commas from string of sales data, and creates a list of strings ['1', '2', '3', '4', '5', '6']
