@@ -106,11 +106,11 @@ def calculate_surplus_data(sales_row):
 
 def update_surplus_worksheet(data):
     """
-    Update sales worksheet, add new row with list data provided.
+    Update surplus worksheet, add new row with list data provided.
     """
     print("Updating surplus worksheet... \n") #informs user of process
-    sales_worksheet = SHEET.worksheet('surplus') #constant variable defined at begining of code
-    sales_worksheet.append_row(data) # .appen_row adds row to our worksheet with data
+    surplus_worksheet = SHEET.worksheet('surplus') #constant variable defined at begining of code
+    surplus_worksheet.append_row(data) # .appen_row adds row to our worksheet with data
     print("Surplus worksheet updated successfully!\n")
 
 
