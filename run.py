@@ -119,7 +119,7 @@ def get_last_5_entries_sales():
     """
     Collects columns of data from sales worksheet,
     collecting the last 5 entries for each sandwich,
-    and returns the data ass a list of strings.
+    and returns the data as a list of strings.
     """
     sales = SHEET.worksheet("sales")
     # column = sales.col_values(3) #retrieve values of 3rd column
